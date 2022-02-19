@@ -7,11 +7,11 @@ public class UDPServer {
     private final int port=15514;
     private final String bindAddress="0.0.0.0";
     private final DatagramSocket socket;
-    private final Messages messages;
+    private final Metrics metrics;
 
     public UDPServer() throws SocketException {
         this.socket = new DatagramSocket(new InetSocketAddress(bindAddress, port));
-        this.messages = new Messages();
+        this.metrics = new Metrics();
     }
 
     public void listen() throws IOException {
@@ -20,7 +20,7 @@ public class UDPServer {
             DatagramPacket datagramPacket=new DatagramPacket(buffer, buffer.length);
             socket.receive(datagramPacket);
             //process message
-            messages.processNewMessage(new String(datagramPacket.getData(),0,datagramPacket.getLength()));
+            metrics.processNewMessage(new String(datagramPacket.getData(),0,datagramPacket.getLength()));
             //response
             InetAddress address = datagramPacket.getAddress();
             int port = datagramPacket.getPort();
