@@ -14,6 +14,6 @@ public class MetricsCommitCronTask extends CronTask {
 
     @Override
     protected void task() {
-        log.info("tyt");
+        metrics.commitMetrics();
     }
 }
