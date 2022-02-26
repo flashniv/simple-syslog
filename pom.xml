@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ua.org.serverhelp</groupId>
-  <artifactId>syslog</artifactId>
+  <artifactId>simple-syslog</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <name>syslog</name>
