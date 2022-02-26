@@ -8,6 +8,7 @@ import ua.org.serverhelp.Metrics;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 @Log4j2
 public class MetricsHttpHandler implements HttpHandler {
@@ -31,7 +32,9 @@ public class MetricsHttpHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         if(exchange.getRequestMethod().equals("GET")){
             StringBuilder responseBody=new StringBuilder();
-            //TODO release response
+            for (Map.Entry<String, Long> entry:metrics.getMessages().entrySet()){
+                responseBody.append(entry.getKey()).append(" ").append(entry.getValue()).append("\n");
+            }
             response(exchange,200,responseBody.toString());
         }else {
             response(exchange,403,"Access denied");

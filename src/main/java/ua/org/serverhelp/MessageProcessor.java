@@ -23,7 +23,7 @@ public class MessageProcessor extends Thread{
                 JSONObject jsonMessage= new JSONObject(matcher.group(1));
                 String key= "nginx_access_log."+jsonMessage.getString("path")+"."+jsonMessage.getString("host").replace('.', '_')+
                         "{method=\""+jsonMessage.getString("request_method")+"\",code=\""+jsonMessage.getInt("response_status")+"\"}";
-                System.out.println(key);
+                incMetric(key);
             }else{
                 throw new Exception("String not match to access_log");
             }
